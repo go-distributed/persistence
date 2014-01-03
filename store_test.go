@@ -15,6 +15,7 @@ func TestWriteAndRead(t *testing.T) {
 
 	src := NewPreAcceptSample()
 	if err := s.Write(src); err != nil {
+		closeAndDeleteFile(f, t)
 		t.Fatal(err)
 	}
 	// normally, we won't explicitly close a storage since we flush it after each write
@@ -44,6 +45,7 @@ func TestWriteAndReadAll(t *testing.T) {
 
 	for i := range src {
 		if err := s.Write(src[i]); err != nil {
+			closeAndDeleteFile(f, t)
 			t.Fatal(err)
 		}
 	}

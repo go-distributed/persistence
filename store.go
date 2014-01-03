@@ -52,7 +52,7 @@ func (s *Store) Read(obj Serializable) error {
 }
 
 // Read all Serializable objects from the Reader
-// objs must be a ptr to a slice, the slice's element should be serializable, i.e.
+// addr must be a ptr to a slice, the slice's element should be serializable, i.e.
 // implements Marshal() and Unmarshal()
 func (s *Store) ReadAll(addr interface{}) error {
 	t := reflect.TypeOf(addr) // t should be a ptr type
