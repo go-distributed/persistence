@@ -70,7 +70,7 @@ func (s *Store) ReadAll(addr interface{}) error {
 	if t.Kind() == reflect.Ptr { // get the underlying type
 		t = t.Elem()
 	}
-	v := reflect.New(t) // v is guranteed to be a ptr to the element type
+	v := reflect.New(t) // v is now guranteed to be a ptr to the element type
 	obj, ok := v.Interface().(Serializable)
 	if !ok {
 		return errors.New("store.ReadAll: invalid argument, not a serializable type")
@@ -79,7 +79,7 @@ func (s *Store) ReadAll(addr interface{}) error {
 	// try to read out all the objects
 	for {
 		if err := s.Read(obj); err != nil {
-			if err == io.EOF { // read finish
+			if err == io.EOF { // finish reading
 				break
 			}
 			return err
@@ -87,6 +87,6 @@ func (s *Store) ReadAll(addr interface{}) error {
 		slice = reflect.Append(slice, reflect.ValueOf(obj))
 		obj = reflect.New(t).Interface().(Serializable)
 	}
-	reflect.ValueOf(addr).Elem().Set(slice) // to make side-effect
+	reflect.ValueOf(addr).Elem().Set(slice) // save the result
 	return nil
 }
