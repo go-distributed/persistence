@@ -1,4 +1,4 @@
-command
+store
 =======
 
-A package for command read/store/execution
+To store any objects that can be marhaled and stored
