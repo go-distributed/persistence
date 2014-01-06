@@ -21,7 +21,7 @@ type File struct {
 	rw *bufio.ReadWriter
 }
 
-func NewFile(f *os.File) persistence.Persistent {
+func NewFile(f *os.File) *File {
 	return &File{
 		fp: f,
 		rw: bufio.NewReadWriter(

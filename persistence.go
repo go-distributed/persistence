@@ -66,7 +66,7 @@ func (p *Persistence) ReadAll(addr interface{}) error {
 	}
 
 	// try to read out all the objects into slice
-	slice := reflect.MakeSlice(t.Elem(), 0, 0)
+	slice := reflect.MakeSlice(reflect.TypeOf(addr).Elem(), 0, 0)
 	for {
 		if err := p.io.Read(obj); err != nil {
 			if err == io.EOF { // finish reading
