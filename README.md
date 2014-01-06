@@ -1,4 +1,6 @@
 store
 =======
 
-To store any objects that can be marhaled and stored
+To store and reload any objects that can be marshaled and unmarshaled
+
+TODO: bench
