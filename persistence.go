@@ -54,7 +54,7 @@ func (p *Persistence) ReadAll(addr interface{}) error {
 	t = t.Elem()
 
 	// t is now the type of the array's elements,
-	// it can be a ptr type or non-ptr type
+	// it can be a ptr type or non-ptr type,
 	// if t is a ptr type, then try to get the underlying type
 	if t.Kind() == reflect.Ptr {
 		t = t.Elem()

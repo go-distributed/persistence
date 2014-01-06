@@ -93,8 +93,7 @@ func (f *File) seekOne(direct int) error {
 			return err
 		}
 	}
-
-	// [*] Here if we use f.rw, the bufio will read more bytes than we want.
+	// [*] Here if we use f.rw, the bufio will read more bytes than we want, thus we use f.fp
 	err := binary.Read(f.fp, binary.LittleEndian, &size)
 	if err != nil {
 		return err
@@ -111,7 +110,6 @@ func (f *File) seekOne(direct int) error {
 	default:
 		return errors.New("persistence.file.SeekOne: should not get here")
 	}
-
 	_, err = f.fp.Seek(offset, 1)
 	return err
 }
