@@ -7,4 +7,4 @@ TODO:
 
 Bench
 
-Optimiza file.Seek()
+Optimize file.Seek()
